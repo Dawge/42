@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 10:16:13 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/12 16:24:04 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/15 15:59:09 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*poney3(t_arg param, va_list ap)
 	str = (char *)malloc(sizeof(char) * 2);
 	if (param.letter == 'c')
 	{
-		*str = va_arg(ap, int);
+		str[0] = va_arg(ap, int);
 		str[1] = '\0';
 		return (str);
 	}

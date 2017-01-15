@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 13:48:02 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/12 16:42:29 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/14 18:08:49 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_arg		init_struct(void)
 	t_arg		params;
 
 	params.neg = 0;
+	params.cha = 0;
 	params.pos = 0;
+	params.brt = 0;
 	params.str = NULL;
 	params.hash = 0;
 	params.conv = 0;
@@ -40,6 +42,7 @@ t_arg		set_struct(const char **format, t_arg params)
 	if (**format == ' ')
 	{
 		(*format)++;
+		params.brt = 1;
 		return (set_struct(format, params));
 	}
 	if (**format == '+')
@@ -113,30 +116,30 @@ int			get_params(const char **format, va_list ap)
 	params = init_struct();
 	params = set_struct(format, params);
 	while (**format == '-' && !ft_isdigit(*(*format + 1)))
+	{
 		(*format)++;
+		params.brt = 0;
+	}
 	params.space = ft_atoi(*format);
 	if (params.space != 0)
 		*format += len_base(params.space, 10) + more_shit(*format);
-		//*format += params.space > 0 ? len_base(params.space, 10) : len_base(params.space, 10) + 1;
 	if (**format == '.')
 	{
 		(*format)++;
 		params.pres = ft_atoi(*format);
-//		if (params.pres != 0)
 			*format += len_base(params.pres, 10);
 	}
 	params.conv = get_conv(*format);
 	if (params.conv != 0)
 		(*format) += params.conv % 2 + 1;
 	params.letter = **format;
-//	ft_putchar(params.letter);
 	params.str = get_string(params, ap);
 	if (ft_atoi(params.str) < 0)
 		params.pos = 0;
-//	printf("neg %d, pos %d, hash %d, conv %d, pres %d, space %d, letter %c, str %s\n", params.neg, params.pos, params.hash, params.conv, params.pres, params.space, params.letter, params.str);
 	return (print_shit(params));
 }
 
+//	printf("neg %d, pos %d, hash %d, conv %d, pres %d, space %d, letter %c, str %s\n", params.neg, params.pos, params.hash, params.conv, params.pres, params.space, params.letter, params.str);
 int			ft_printf(const char *format, ...)
 {
 	va_list		ap;
@@ -154,8 +157,8 @@ int			ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			while (ft_isspace(*format))
-				format++;
+			//while (ft_isspace(*format))
+			//	format++;
 			get_print += get_params((&format), ap);
 			format++;
 		}

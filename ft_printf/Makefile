@@ -6,7 +6,7 @@
 #    By: rostroh <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/10 15:59:34 by rostroh           #+#    #+#              #
-#    Updated: 2017/01/10 16:18:47 by rostroh          ###   ########.fr        #
+#    Updated: 2017/01/14 17:37:41 by rostroh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = ft_printf.c \
 	  get_base.c \
 	  print.c \
 	  conv.c \
+	  gestion.c \
 	  libft/*.c
 
 OBJ = ft_printf.o \
@@ -32,6 +33,9 @@ $(NAME):
 	gcc -c $(SRC) -I $(HEAD)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
+
+gg:
+	gcc $(SRC) main.c -I $(HEAD) libft.a
 
 clean:
 	rm -rf $(OBJ)
