@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 14:02:34 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/14 18:09:25 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/16 17:53:48 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_arg
 	char	*str;
 	int		space;
 	char	zero;
+	int		point;
 	char	letter;
 }				t_arg;
 
@@ -37,6 +38,7 @@ int			check_diD(char c);
 int			check_xX(char c, int hash);
 int			len_base(long nb, int base);
 char		*get_base(long nb, int base, char c);
+char		*unsigned_get_base(unsigned long nb, int base, char c);
 int			ft_printf(const char *format, ...);
 char		*get_string(t_arg param, va_list ap);
 int			print_shit(t_arg params);

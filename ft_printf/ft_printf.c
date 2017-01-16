@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 13:48:02 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/14 18:08:49 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/16 17:33:48 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_arg		init_struct(void)
 	params.conv = 0;
 	params.pres = 0;
 	params.zero = ' ';
+	params.point = 0;
 	params.space = 0;
 	params.letter = '0';
 	return (params);
@@ -126,7 +127,9 @@ int			get_params(const char **format, va_list ap)
 	if (**format == '.')
 	{
 		(*format)++;
+		params.point = 1;
 		params.pres = ft_atoi(*format);
+		if (ft_isdigit(**format))
 			*format += len_base(params.pres, 10);
 	}
 	params.conv = get_conv(*format);

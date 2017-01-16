@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 12:58:01 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/16 18:10:47 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/16 17:53:46 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,37 +54,6 @@ char	*get_tab(int base, char c)
 	return (NULL);
 }
 
-char	*get_base(long nb, int base, char c)
-{
-	int		len;
-	char	*tab;
-	char	*str;
-
-	len = 0;
-	if (base > 36 || base < 2)
-		return (NULL);
-	if (base == 10)
-		return (ft_itoa(nb));
-	tab = get_tab(base, c);
-	len = len_base(nb, base);
-	str = (char *)malloc(sizeof(char) * len + 1);
-	if (nb < 0)
-		nb = -nb;
-	if (str)
-	{
-		str[len--] = '\0';
-		while (len > 0)
-		{
-			str[len] = tab[nb % base];
-			nb /= base;
-			len--;
-		}
-		str[len] = tab[nb];
-		return (str);
-	}
-	return (NULL);
-}
-
 char	*unsigned_get_base(unsigned long nb, int base, char c)
 {
 	int		len;
@@ -97,6 +66,8 @@ char	*unsigned_get_base(unsigned long nb, int base, char c)
 	tab = get_tab(base, c);
 	len = len_base(nb, base);
 	str = (char *)malloc(sizeof(char) * len + 1);
+	if (nb <= 0)
+		nb = -nb;
 	if (str)
 	{
 		str[len--] = '\0';

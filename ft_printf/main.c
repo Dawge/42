@@ -6,7 +6,7 @@
 /*   By: rostroh <rostroh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 15:53:48 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/15 16:25:07 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/16 18:06:51 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,13 @@ int			main(int argc, char **argv)
 	i = 42;
 	t = 8;
 	c = L'芝';
-	ft_printf("%d\n", -42);
-	printf("%d\n", -42);
+	ft_printf("%d\n", -1);
+	printf("%d\n", -1);
+//	ft_printf("%lu", -42);
+//	ft_printf("%ld\n", 9223372036854775807);
+//	printf("%ld\n", 9223372036854775807);
+//	ft_printf("%5.o\n", 0);
+//	printf("%5.o\n", 0);
 //	ft_printf("%5.2s is a string\n", "this");
 //	printf("%5.2s is a string\n", "this");
 //	ft_printf("%2c\n", 0);

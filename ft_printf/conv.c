@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 10:16:13 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/15 15:59:09 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/16 18:22:14 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*gestion_arg(int arg, int base, char letter, va_list ap)
 	if (arg == 3)
 		return (get_base(va_arg(ap, long long), base, letter));
 	if (arg == 4)
-		return (get_base(va_arg(ap, int), base, letter));
+		return (get_base((short)va_arg(ap, int), base, letter));
 	if (arg == 5)
 		return (get_base(va_arg(ap, int), base, letter));
 	if (arg == 6)
@@ -33,19 +33,17 @@ char	*gestion_arg(int arg, int base, char letter, va_list ap)
 char	*gestion_arg2(int arg, int base, char letter, va_list ap)
 {
 	if (arg == 2)
-		return (get_base(va_arg(ap, unsigned long), base, letter));
+		return (unsigned_get_base(va_arg(ap, unsigned long), base, letter));
 	if (arg == 3)
-		return (get_base(va_arg(ap, unsigned long long), base, letter));
+		return (unsigned_get_base(va_arg(ap, unsigned long long), base, letter));
 	if (arg == 4)
-		return (get_base(va_arg(ap, unsigned int), base, letter));
+		return (unsigned_get_base(va_arg(ap, unsigned int), base, letter));
 	if (arg == 5)
-		return (get_base(va_arg(ap, unsigned int), base, letter));
+		return (unsigned_get_base(va_arg(ap, unsigned int), base, letter));
 	if (arg == 6)
-	{
-		return (get_base(va_arg(ap, uintmax_t), base, letter));
-	}
+		return (unsigned_get_base(va_arg(ap, uintmax_t), base, letter));
 	if (arg == 8)
-		return (get_base(va_arg(ap, size_t), base, letter));
+		return (unsigned_get_base(va_arg(ap, size_t), base, letter));
 	return (NULL);
 }
 
@@ -78,25 +76,25 @@ char	*poney2(t_arg param, va_list ap)
 	{
 		if (param.conv != 0)
 			return (gestion_arg2(param.conv, 8, '.', ap));
-		return (get_base(va_arg(ap, int), 8, '.'));
+		return (unsigned_get_base(va_arg(ap, int), 8, '.'));
 	}
 	if (param.conv == 'O')
 	{
 		if (param.conv != 0)
 			return (gestion_arg2(param.conv, 8, '.', ap));
-		return (get_base(va_arg(ap, long), 8, '.'));
+		return (unsigned_get_base(va_arg(ap, long), 8, '.'));
 	}
-	if (param.conv == 'u')
+	if (param.letter == 'u')
 	{
 		if (param.conv != 0)
 			return (gestion_arg2(param.conv, 10, '.', ap));
-		return (get_base(va_arg(ap, unsigned int), 10, '.'));
+		return (unsigned_get_base(va_arg(ap, unsigned int), 10, '.'));
 	}
-	if (param.conv == 'U')
+	if (param.letter == 'U')
 	{
 		if (param.conv != 0)
 			return (gestion_arg2(param.conv, 10, '.', ap));
-		return (get_base(va_arg(ap, unsigned long), 10, '.'));
+		return (unsigned_get_base(va_arg(ap, unsigned long), 10, '.'));
 	}
 	return (poney3(param, ap));
 }
@@ -119,9 +117,9 @@ char	*get_string(t_arg param, va_list ap)
 	{
 		if (param.conv != 0)
 			return (gestion_arg2(param.conv, 16, param.letter - 23, ap));
-		return (get_base(va_arg(ap, unsigned int), 16, param.letter - 23));
+		return (unsigned_get_base(va_arg(ap, unsigned int), 16, param.letter - 23));
 	}
 	if (param.letter == 'p')
-		return (ft_strcat("0x", get_base(va_arg(ap, unsigned long), 16, 'a')));
+		return (ft_strcat("0x", unsigned_get_base(va_arg(ap, unsigned long), 16, 'a')));
 	return (poney2(param, ap));
 }

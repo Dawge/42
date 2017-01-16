@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 13:09:14 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/15 16:33:19 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/16 18:11:05 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,16 @@ int		print_shit(t_arg params)
 		get_printed += stupidshit(params);
 	if (check_diD(params.letter) == 1 && params.pos == 1)
 		ft_putchar('+');
-	get_printed += print(params);
+	if (!(params.point == 1 && params.pres == 0) || params.letter == '%')
+		get_printed += print(params);
+	else
+	{
+		if (params.letter == 'o' || params.letter == 'O')
+		{
+			ft_putchar(' ');
+			get_printed++;
+		}
+	}
 	while (++tmp + value < 0 && tmp < 0)
 	{
 		get_printed++;
