@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 10:16:13 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/16 18:22:14 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/17 13:28:41 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*gestion_arg(int arg, int base, char letter, va_list ap)
 	if (arg == 4)
 		return (get_base((short)va_arg(ap, int), base, letter));
 	if (arg == 5)
-		return (get_base(va_arg(ap, int), base, letter));
+		return (get_base((char)va_arg(ap, int), base, letter));
 	if (arg == 6)
 		return (get_base(va_arg(ap, intmax_t), base, letter));
 	if (arg == 8)
@@ -41,7 +41,7 @@ char	*gestion_arg2(int arg, int base, char letter, va_list ap)
 	if (arg == 5)
 		return (unsigned_get_base(va_arg(ap, unsigned int), base, letter));
 	if (arg == 6)
-		return (unsigned_get_base(va_arg(ap, uintmax_t), base, letter));
+		return (unsigned_get_base(va_arg(ap, unsigned long), base, letter));
 	if (arg == 8)
 		return (unsigned_get_base(va_arg(ap, size_t), base, letter));
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 13:09:14 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/16 18:11:05 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/17 16:06:25 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,33 @@ int		print_shit(t_arg params)
 	int		get_printed;
 
 	get_printed = 0;
-	value = get_value(params);
+/*	value = get_value(params);
+	if (check_diD(params.letter))
+		value += (params.pres > ft_strlen(params.str) ? params.pres - get_value(params) : 0);
 	params = set_params(params);
-	other_shit = params.pres - ft_strlen(params.str);
+	other_shit = params.pres > ft_strlen(params.str) ? 0 : params.pres - ft_strlen(params.str);
 	if (other_shit < 0 || params.letter == 'c' || params.letter == 's' )
 		other_shit = 0;
-	tmp = params.space;
-	if (check_xX(params.letter, params.hash) && params.zero == '0')
+	tmp = params.space;*/
+	if (check_xXoO(params.letter, params.hash) && params.zero == '0')
 		get_printed += stupidshit(params);
+	if (check_diD(params.letter) == 1 && params.pos == 1 && params.zero == '0')
+		ft_putchar('+');
 	if (params.zero == '0' && params.neg == 1)
 	{
 		ft_putchar('-');
 		get_printed++;
 	}
-	while (tmp-- - value - other_shit > 0 && tmp > 0)
+	while (tmp-- - value - other_shit - params.pos > 0 && tmp > 0)
 	{
 		get_printed++;
 		ft_putchar(params.zero);
+	}
+	while (params.pres > ft_strlen(params.str) && check_diD(params.letter) == 1)
+	{
+		get_printed++;
+		ft_putchar('0');
+		params.pres--;
 	}
 	if (params.brt == 1 && params.letter == 'd')
 	{
@@ -114,12 +124,12 @@ int		print_shit(t_arg params)
 		get_printed++;
 	}
 	get_printed += other_shit;
+	if (check_diD(params.letter) == 1 && params.pos == 1 && params.zero != '0')
+		ft_putchar('+');
 	while (other_shit-- > 0 && check_diD(params.letter) == 1)
 		ft_putchar('0');
 	if (check_xX(params.letter, params.hash) && params.zero == ' ')
 		get_printed += stupidshit(params);
-	if (check_diD(params.letter) == 1 && params.pos == 1)
-		ft_putchar('+');
 	if (!(params.point == 1 && params.pres == 0) || params.letter == '%')
 		get_printed += print(params);
 	else

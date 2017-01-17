@@ -6,7 +6,7 @@
 /*   By: rostroh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 16:57:08 by rostroh           #+#    #+#             */
-/*   Updated: 2017/01/15 16:06:19 by rostroh          ###   ########.fr       */
+/*   Updated: 2017/01/17 15:24:15 by rostroh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_arg	set_params(t_arg params)
 
 	cpy = params.str;
 	params.cha = *cpy;
-	if (ft_atoi(params.str) < 0)
+	if (ft_atoi(params.str) < 0 && check_diD(params.letter) == 1)
 	{
 		params.neg = 1;
 		params.str = abs_string(params.str);
